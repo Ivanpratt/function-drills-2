@@ -3,7 +3,27 @@
 ////////////////////////
 
 // CODE HERE
+const add = (num1, num2) => num1 + num2
+const subtract = (num1, num2) => num1 - num2
+const multiply = (num1, num2) => {
+    return num1 * num2
+}
+const divide = (num1, num2) => {
+    return num1 / num2
+}
 
+const calculator = (num1, num2, operation) => {
+    if(+num1 && +num2){
+        num1 = +num1
+        num2 = +num2
+        return operation(num1, num2)
+    } else {
+        console.log('you need to send numbers')
+    }
+
+}
+
+console.log(calculator(2, 3, divide))
 
 ///////////////////////
 ////// PET STORE //////
@@ -64,17 +84,51 @@ const catProducts = [
 ]
 
 // CODE HERE
+const applyPercentDiscount = (product, discount) => {
+    product.displayPrice = product.basePrice * (1 - discount)
+}
 
+const applyFlatRateDiscount = (product, discount) => {
+    product.displayPrice = product.basePrice - discount
+}
+
+const applyDiscounts = (arr, callback, discount) => {
+    arr.forEach(product => {
+        callback(product, discount)
+    })
+
+}
+
+applyDiscounts(catProducts, applyFlatRateDiscount, 5)
 
 
 ////////////////////////
 ////// SANDWICHES //////
 ////////////////////////
 
-// CODE HERE
+function makeSandwich(bread) {
 
+    return function(ingredients){
+        let order = `you ordered a ${bread} bread sandwhich with`
 
+        for(i = 0; i < ingredients.length; i++) {
+            if(ingredients.length === 1){
+                order =+ `${ingredients[i]}`
+            } else if(i === ingredients.length - 1 && i !== 0){
+                order += `and ${ingredients[i]}`
+            } else {
+                order += `${ingredients[i]},`
+            }
 
+        }
+
+        return order
+    }
+}
+
+const makeWheatSandwich = makeSandwich('wheat')
+
+console.log(makeWheatSandwich(['turkey', 'ham', 'cheese']))
 ////////////////////////////////////
 ////// COPY AND CHANGE ARRAYS //////
 ////////////////////////////////////
@@ -138,7 +192,7 @@ const copyArrToSnakeCase = arr => {
 
 const colors = ['red', 'blue', 'yellow', 'green', 'orange']
 
-const mappedColors // = colors.map()
+//const mappedColors // = colors.map()
 
 /*
     Edit the formalGreeting function and use the built in .map method 
@@ -166,7 +220,7 @@ const formalGreeting = names => {
 
 const places = ['Binghampton', 'Albany', 'New York', 'Ithaca', 'Auburn', 'Rochester', 'Buffalo']
 
-const placesThatStartWithA // = places.filter()
+//const placesThatStartWithA // = places.filter()
 
 
 /*
@@ -244,4 +298,4 @@ const expenses = [
     }
 ]
 
-const remaining // = expenses.reduce(//callback, //initial value)
+//const remaining // = expenses.reduce(//callback, //initial value)
